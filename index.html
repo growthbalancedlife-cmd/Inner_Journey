@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Curriculum & Framework Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --cream: #f5f0e8;
+    --warm: #f0e8d4;
+    --gold: #c9922a;
+    --rust: #a84820;
+    --sage: #5a7a60;
+    --muted: #8a7a65;
+    --light-muted: #c8b99a;
+    --border: #d4c4a8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* HEADER */
+  header {
+    position: relative;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,146,42,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(90,122,96,0.1) 0%, transparent 50%);
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 1.05;
+    position: relative;
+    letter-spacing: -0.02em;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .header-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--light-muted);
+    margin-top: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  .header-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    color: var(--gold);
+    opacity: 0.6;
+    position: relative;
+  }
+
+  .header-ornament::before, .header-ornament::after {
+    content: '';
+    height: 1px;
+    width: 80px;
+    background: currentColor;
+  }
+
+  /* NAVIGATION */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(245,240,232,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 1rem 1.2rem;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--rust);
+    border-bottom-color: var(--rust);
+  }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* SECTION */
+  section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-title-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .section-title-block p {
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  /* PROSE */
+  .prose {
+    max-width: 700px;
+    line-height: 1.85;
+    font-size: 1.05rem;
+    color: #2a2010;
+  }
+
+  .prose p + p {
+    margin-top: 1.2rem;
+  }
+
+  .prose strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .card {
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.8rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(26,18,8,0.08);
+  }
+
+  .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* QUOTE */
+  .pullquote {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    background: linear-gradient(to right, rgba(201,146,42,0.05), transparent);
+  }
+
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .pullquote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.8rem;
+  }
+
+  /* FRAMEWORK BUILDER */
+  .framework-builder {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem;
+    border-radius: 2px;
+    margin-top: 2.5rem;
+  }
+
+  .framework-builder h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .framework-builder > p {
+    color: var(--light-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .builder-question {
+    margin-bottom: 1.8rem;
+  }
+
+  .builder-question label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .builder-question p.question-text {
+    font-style: italic;
+    color: var(--light-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .builder-question textarea, .builder-question input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--cream);
+    padding: 0.8rem 1rem;
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    border-radius: 2px;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+
+  .builder-question textarea:focus, .builder-question input:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  .builder-question textarea {
+    min-height: 90px;
+  }
+
+  .builder-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #d9a23a;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--light-muted);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.8rem 1.8rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--light-muted);
+    color: var(--cream);
+  }
+
+  /* FRAMEWORK OUTPUT */
+  #framework-output {
+    display: none;
+    background: rgba(201,146,42,0.08);
+    border: 1px solid rgba(201,146,42,0.3);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 2px;
+    animation: fadeUp 0.4s ease;
+  }
+
+  #framework-output h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  #framework-output .output-section {
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #framework-output .output-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  #framework-output .output-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light-muted);
+    margin-bottom: 0.4rem;
+  }
+
+  #framework-output .output-value {
+    color: var(--cream);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 2.5rem;
+  }
+
+  .pillar {
+    background: var(--cream);
+    padding: 2rem 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .pillar:hover {
+    background: var(--warm);
+  }
+
+  .pillar-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--light-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .pillar p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .pillar-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  /* PHASES */
+  .phases {
+    position: relative;
+    margin-top: 2.5rem;
+  }
+
+  .phases::before {
+    content: '';
+    position: absolute;
+    left: 2.5rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .phase {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .phase-dot {
+    width: 5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.2rem;
+  }
+
+  .phase-dot-inner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--gold);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    margin-top: 4px;
+    transition: background 0.2s;
+  }
+
+  .phase:hover .phase-dot-inner {
+    background: var(--gold);
+  }
+
+  .phase-content {
+    flex: 1;
+    padding-bottom: 1rem;
+  }
+
+  .phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .phase-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .phase-content p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .phase-content ul {
+    list-style: none;
+    margin-top: 0.8rem;
+  }
+
+  .phase-content ul li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .phase-content ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    margin-top: 2rem;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .checklist-item:hover .check-box {
+    border-color: var(--gold);
+  }
+
+  .checklist-item.checked .check-box {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: white;
+  }
+
+  .check-box svg {
+    display: none;
+    width: 12px;
+    height: 12px;
+  }
+
+  .checklist-item.checked .check-box svg {
+    display: block;
+  }
+
+  .check-content h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .check-content p {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ACCORDION */
+  .accordion {
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .accordion-item:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.3rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+  }
+
+  .accordion-header:hover {
+    background: var(--warm);
+  }
+
+  .accordion-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .accordion-chevron {
+    transition: transform 0.3s;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .accordion-item.open .accordion-chevron {
+    transform: rotate(180deg);
+  }
+
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .accordion-item.open .accordion-body {
+    max-height: 800px;
+  }
+
+  .accordion-body-inner {
+    padding: 1.5rem;
+    background: var(--warm);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* PROGRESS TRACKER */
+  .progress-ring {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--warm);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 2px;
+  }
+
+  .ring-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+
+  .ring-container svg {
+    transform: rotate(-90deg);
+  }
+
+  .ring-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .progress-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .progress-info p {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--muted);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  footer .footer-mark {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .section-header { flex-direction: column; gap: 0.5rem; }
+    .section-num { font-size: 3rem; }
+    .framework-builder { padding: 1.5rem; }
+    .phases::before { left: 2.2rem; }
+    .progress-ring { flex-direction: column; text-align: center; }
+  }
+
+  /* --- PRINT & PDF EXPORT STYLES --- */
+  @media print {
+    /* Hide all the web UI elements */
+    header, nav, #foundations, #pillars, #phases, #practices, #models, #checklist, .builder-actions, .builder-question, footer {
+      display: none !important;
+    }
+
+    /* Reset background and text for clean printing */
+    body {
+      background: white !important;
+      color: black !important;
+    }
+    body::before {
+      display: none !important; /* Removes the grain overlay */
+    }
+
+    /* Format the framework output as a standalone document */
+    #builder {
+      padding: 0;
+      border: none;
+    }
+    .framework-builder {
+      background: white;
+      color: black;
+      padding: 0;
+    }
+    .framework-builder > h3, .framework-builder > p {
+      display: none; /* Hide the instructional text */
+    }
+
+    #framework-output {
+      display: block !important;
+      background: white;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #framework-output h4 {
+      font-size: 2.5rem;
+      color: black;
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 2px solid black;
+      padding-bottom: 1rem;
+    }
+
+    #framework-output .output-section {
+      margin-bottom: 2rem;
+      border-bottom: none;
+      page-break-inside: avoid; /* Prevents paragraphs from splitting across pages */
+    }
+
+    #framework-output .output-label {
+      color: #555;
+      font-size: 0.8rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    #framework-output .output-value {
+      color: black;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-eyebrow">A 9-Month Curriculum</div>
+  <h1>Your <em>Personal</em><br>Development<br>Framework</h1>
+  <p class="header-subtitle">Craft a living philosophy for intentional growth — integrating 10 foundational books across Stoicism and Depth Psychology.</p>
+  <div class="header-ornament">✦</div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#foundations" class="active">Why a Curriculum?</a>
+    <a href="#pillars">Core Pillars</a>
+    <a href="#phases">The 9 Months</a>
+    <a href="#practices">Exercises</a>
+    <a href="#models">Reading List</a>
+    <a href="#builder">Framework Builder</a>
+    <a href="#checklist">Tracker</a>
+  </div>
+</nav>
+
+<section id="foundations">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title-block">
+        <h2>Why a Structured Curriculum?</h2>
+        <p>The architecture beneath your intellectual growth</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Most people drift through self-improvement — reading a book here, adopting a habit there — without a coherent philosophy tying it all together. A <strong>structured curriculum</strong> changes that. It provides a guided path through complex psychological and philosophical landscapes.</p>
+      <p>This 9-month schedule is built around 10 carefully selected texts, bridging the rational resilience of Stoicism with the subconscious exploration of Jungian Depth Psychology. It is designed not just for reading, but for deep, lived application.</p>
+    </div>
+
+    <div class="pullquote">
+      <p>"The mind that is anxious about future events is miserable. Ground yourself in study, and apply what you learn to the present moment."</p>
+      <cite>— Seneca</cite>
+    </div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-block">
+        <h2>The Seven Core Pillars</h2>
+        <p>The structural elements your reading will address</p>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🌱</span>
+        <div class="pillar-num">Pillar 01</div>
+        <h3>Identity & Values</h3>
+        <p>Who are you at your core? What do you believe about yourself and the world? Your values are the bedrock everything else rests on.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🎯</span>
+        <div class="pillar-num">Pillar 02</div>
+        <h3>Vision & Purpose</h3>
+        <p>Where are you going, and why does it matter? A compelling vision provides the motivational fuel for sustained growth.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧠</span>
+        <div class="pillar-num">Pillar 03</div>
+        <h3>Mindset & Beliefs</h3>
+        <p>What do you believe is possible? Your mindset determines the ceiling on your achievement and the floor on your resilience.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">⚡</span>
+        <div class="pillar-num">Pillar 04</div>
+        <h3>Energy & Body</h3>
+        <p>Your physical state shapes your cognitive and emotional capacity. This pillar covers sleep, movement, nutrition, and recovery.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🤝</span>
+        <div class="pillar-num">Pillar 05</div>
+        <h3>Relationships</h3>
+        <p>You are profoundly shaped by your social environment. Who you spend time with and where you spend it matters enormously.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">📚</span>
+        <div class="pillar-num">Pillar 06</div>
+        <h3>Learning & Skills</h3>
+        <p>Your capacity to acquire knowledge and competency defines how quickly you can grow and adapt to change.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">✨</span>
+        <div class="pillar-num">Pillar 07</div>
+        <h3>Contribution</h3>
+        <p>What do you give to the world? Sustainable growth is rooted in something larger than personal gain.</p>
+      </div>
+      <div class="pillar" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:var(--ink); color:var(--cream);">
+        <div style="font-family:'Playfair Display',serif; font-size:1.35rem; font-style:italic; font-weight:700; color:var(--gold); line-height:1.3; letter-spacing:0.04em;">"Knowledge<br>Requires<br>Execution"</div>
+        <div style="width:40px; height:1px; background:var(--gold); opacity:0.4; margin:1rem auto;"></div>
+        <div style="font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--light-muted);">Curriculum Principle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="phases">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-block">
+        <h2>The 9-Month Schedule</h2>
+        <p>Your chronological map through the 10 texts</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>This curriculum moves from establishing internal control (Stoicism) to exploring the subconscious (Depth Psychology), ultimately culminating in a synthesized personal philosophy.</p>
+    </div>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-dot"><div class="phase-dot-inner"></div></div>
+        <div class="phase-content">
+          <div class="phase-label">Months 1-2: Foundations of Resilience</div>
+          <h3>The Stoic Mindset</h3>
+          <p>Establish mental resilience, internal control, and learn to distinguish between what is yours to carry and what belongs to the world.</p>
+          <ul>
+            <li><strong>Book 1:</strong> Marcus Aurelius — <em>Meditations</em></li>
+            <li><strong>Book 2:</strong> Epictetus — <em>Discourses and Selected Writings</em></li>
+            <li>Write a daily reflection identifying what is within your control vs. what is external.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot"><div class="phase-dot-inner"></div></div>
+        <div class="phase-content">
+          <div class="phase-label">Months 3-4: Depth & The Subconscious</div>
+          <h3>Jungian Psychology & The Shadow</h3>
+          <p>Moving beyond logic, we explore the subconscious. Understanding the shadow self and integrating repressed aspects of your identity.</p>
+          <ul>
+            <li><strong>Book 3:</strong> Carl Jung — <em>Man and His Symbols</em></li>
+            <li><strong>Book 4:</strong> Robert A. Johnson — <em>Owning Your Own Shadow</em></li>
+            <li>Complete the shadow journaling prompt twice a week.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot"><div class="phase-dot-inner"></div></div>
+        <div class="phase-content">
+          <div class="phase-label">Months 5-6: Systems & Emotional Intelligence</div>
+          <h3>Operationalizing Philosophy</h3>
+          <p>Translate abstract philosophical and psychological concepts into daily, actionable systems. Regulating emotion through structured habits.</p>
+          <ul>
+            <li><strong>Book 5:</strong> James Clear — <em>Atomic Habits</em></li>
+            <li><strong>Book 6:</strong> Daniel Goleman — <em>Emotional Intelligence</em></li>
+            <li>Design your ideal week around your new priorities.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot"><div class="phase-dot-inner"></div></div>
+        <div class="phase-content">
+          <div class="phase-label">Months 7-8: Meaning & Mastery</div>
+          <h3>Finding the "Why"</h3>
+          <p>Addressing the existential crisis through purpose. Finding meaning in suffering and mastering your chosen domain.</p>
+          <ul>
+            <li><strong>Book 7:</strong> Viktor Frankl — <em>Man's Search for Meaning</em></li>
+            <li><strong>Book 8:</strong> Robert Greene — <em>Mastery</em></li>
+            <li><strong>Book 9:</strong> Ryan Holiday — <em>The Obstacle is the Way</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot"><div class="phase-dot-inner"></div></div>
+        <div class="phase-content">
+          <div class="phase-label">Month 9: Synthesis</div>
+          <h3>Building The Framework</h3>
+          <p>Review and evolve your learnings. Integrate lessons from all previous texts to construct your final, individualized operating system.</p>
+          <ul>
+            <li><strong>Book 10:</strong> Ray Dalio — <em>Principles: Life and Work</em></li>
+            <li>Finalize the Framework Builder at the bottom of this guide.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="practices">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title-block">
+        <h2>Life Application Exercises</h2>
+        <p>Turning reading into reality</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Reading without application is mere entertainment. These exercises ensure the concepts from Marcus Aurelius, Carl Jung, and others take root in your daily life.</p>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item open">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3>📔 The Stoic Evening Reflection (Daily)</h3>
+          <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Spend 10–15 minutes each evening with three questions drawn from Meditations: <em>What did I allow to upset me today that was outside my control? How did I act in alignment with my virtues? What will I do differently tomorrow?</em></p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3>🌑 Shadow Journaling (Weekly)</h3>
+          <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Based on Jungian principles, identify one strong emotional reaction or trigger you had this week. Ask yourself: <em>What part of myself am I repressing that this situation is mirroring back to me?</em> Map out recurring dream symbols or emotional triggers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3>⚖️ The Dichotomy of Control Audit (Monthly)</h3>
+          <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Draw a line down the center of a page. On the left, list your current major stressors. On the right, pull out the *only* aspects of those stressors you directly control. Cross out everything on the left and focus solely on the right.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="models">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title-block">
+        <h2>Foundational Texts</h2>
+        <p>The core models driving the curriculum</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-tag">Stoicism / Month 1</span>
+        <h3>Meditations</h3>
+        <p>Marcus Aurelius’s private journals. A masterclass in emotional regulation, duty, and finding stillness amidst chaos and leadership.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Psychology / Month 3</span>
+        <h3>Man and His Symbols</h3>
+        <p>Carl Jung’s accessible guide to the unconscious mind, archetypes, and the profound importance of understanding our dreams and shadows.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Systems / Month 5</span>
+        <h3>Atomic Habits</h3>
+        <p>James Clear’s framework for compounding growth. Translating grand philosophical goals into microscopic, fail-proof daily systems.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Meaning / Month 7</span>
+        <h3>Man's Search for Meaning</h3>
+        <p>Viktor Frankl’s psychiatric triumph over the Holocaust. The ultimate proof that between stimulus and response, there is a space where we choose our reaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="builder">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title-block">
+        <h2>Framework Builder</h2>
+        <p>Synthesize your 9 months of study here</p>
+      </div>
+    </div>
+
+    <div class="framework-builder">
+      <h3>Your Personal Framework Builder</h3>
+      <p>Your inputs here are automatically saved to your browser. Return to this as you progress through the books.</p>
+
+      <div class="builder-question">
+        <label>Stoic Foundation</label>
+        <p class="question-text">Based on Month 1, what are the core things you have decided to stop worrying about because they are outside your control?</p>
+        <textarea placeholder="Write your answer here..."></textarea>
+      </div>
+
+      <div class="builder-question">
+        <label>Shadow Integration</label>
+        <p class="question-text">Based on Month 3, what is a trait you historically disliked in others that you now recognize exists within yourself?</p>
+        <textarea placeholder="Describe your reflection..."></textarea>
+      </div>
+
+      <div class="builder-question">
+        <label>Core Systems</label>
+        <p class="question-text">What are the 3 non-negotiable daily habits you have built to operationalize your philosophy?</p>
+        <textarea placeholder="List your core practices..."></textarea>
+      </div>
+
+      <div class="builder-question">
+        <label>Your Defining Purpose</label>
+        <p class="question-text">Drawing from Frankl and Greene, what domain are you seeking mastery in, and what is the 'Why' driving it?</p>
+        <textarea placeholder="Name your purpose..."></textarea>
+      </div>
+
+      <div class="builder-question">
+        <label>Your Framework Name</label>
+        <p class="question-text">Give your personal operating system a title.</p>
+        <input type="text" placeholder="e.g., The Synthesis Protocol, Stoic Integration...">
+      </div>
+
+      <div class="builder-actions">
+        <button class="btn-primary" onclick="generateFramework()">Generate My Framework Summary</button>
+        <button class="btn-primary" style="background: var(--sage); color: white;" onclick="exportPDF()">Export to PDF</button>
+        <button class="btn-secondary" onclick="clearBuilder()">Clear All Saved Data</button>
+      </div>
+
+      <div id="framework-output">
+        <h4>✦ Your Personal Framework Summary</h4>
+        <div id="output-content"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div class="section-title-block">
+        <h2>Curriculum Checklist</h2>
+        <p>Track your execution over the 9 months</p>
+      </div>
+    </div>
+
+    <div class="progress-ring" id="progress-display">
+      <div class="ring-container">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="32" fill="none" stroke="#d4c4a8" stroke-width="6"/>
+          <circle id="progress-circle" cx="40" cy="40" r="32" fill="none" stroke="#c9922a" stroke-width="6"
+            stroke-dasharray="201" stroke-dashoffset="201" stroke-linecap="round" style="transition: stroke-dashoffset 0.5s ease"/>
+        </svg>
+        <div class="ring-text" id="progress-pct">0%</div>
+      </div>
+      <div class="progress-info">
+        <h4>Curriculum Progress</h4>
+        <p>Your progress is saved locally. Return here weekly to update your standing.</p>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Completed Books 1 & 2 (Stoicism)</h4>
+          <p>Read Meditations and Epictetus.</p>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Established Daily Stoic Reflection</h4>
+          <p>Successfully practiced the evening reflection for 30 consecutive days.</p>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Completed Books 3 & 4 (Depth Psychology)</h4>
+          <p>Read Man and His Symbols and Owning Your Own Shadow.</p>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Completed 4 Shadow Journaling Sessions</h4>
+          <p>Identified recurring emotional triggers and mapped them to internal traits.</p>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Completed Books 5 & 6 (Systems & EQ)</h4>
+          <p>Read Atomic Habits and Emotional Intelligence.</p>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Completed Books 7, 8 & 9 (Meaning)</h4>
+          <p>Read Frankl, Greene, and Holiday.</p>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Completed Book 10 (Synthesis)</h4>
+          <p>Read Principles by Ray Dalio.</p>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2"><polyline points="1,6 4.5,9.5 11,2"/></svg></div>
+        <div class="check-content">
+          <h4>Completed the Framework Builder</h4>
+          <p>Answered all reflection questions in Section 6 and generated your final summary.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-mark">Grow Intentionally</span>
+  <p>A 9-Month Curriculum for the Development of a Personal Framework</p>
+</footer>
+
+<script>
+  // --- INITIALIZE LOCAL STORAGE DATA ON LOAD ---
+  document.addEventListener("DOMContentLoaded", () => {
+    // Load saved checklist progress
+    const savedChecks = JSON.parse(localStorage.getItem('frameworkChecks') || '[]');
+    document.querySelectorAll('.checklist-item').forEach((item, index) => {
+      if(savedChecks.includes(index)) {
+        item.classList.add('checked');
+      }
+    });
+    updateProgress(); // Animate the ring on load
+
+    // Load saved framework builder text
+    const savedText = JSON.parse(localStorage.getItem('frameworkText') || '{}');
+    document.querySelectorAll('.framework-builder textarea, .framework-builder input').forEach((el, index) => {
+      if(savedText[index]) el.value = savedText[index];
+      
+      // Auto-save text as you type
+      el.addEventListener('input', () => {
+        const currentText = JSON.parse(localStorage.getItem('frameworkText') || '{}');
+        currentText[index] = el.value;
+        localStorage.setItem('frameworkText', JSON.stringify(currentText));
+      });
+    });
+  });
+
+  // Accordion
+  function toggleAccordion(header) {
+    const item = header.closest('.accordion-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Checklist with Save Functionality
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    updateProgress();
+    
+    // Save to Local Storage
+    const checks = [];
+    document.querySelectorAll('.checklist-item').forEach((el, index) => {
+      if(el.classList.contains('checked')) checks.push(index);
+    });
+    localStorage.setItem('frameworkChecks', JSON.stringify(checks));
+  }
+
+  function updateProgress() {
+    const total = document.querySelectorAll('.checklist-item').length;
+    const checked = document.querySelectorAll('.checklist-item.checked').length;
+    const pct = Math.round((checked / total) * 100);
+    document.getElementById('progress-pct').textContent = pct + '%';
+    const circumference = 201;
+    const offset = circumference - (pct / 100) * circumference;
+    document.getElementById('progress-circle').style.strokeDashoffset = offset;
+  }
+
+  // Nav active state
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const id = entry.target.id;
+        const link = document.querySelector(`nav a[href="#${id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Smooth scroll
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Framework generator
+  function generateFramework() {
+    const textareas = document.querySelectorAll('.framework-builder textarea');
+    const nameInput = document.querySelector('.framework-builder input');
+    const labels = ['Stoic Foundation', 'Shadow Integration', 'Core Systems', 'Defining Purpose'];
+    
+    const outputEl = document.getElementById('framework-output');
+    const contentEl = document.getElementById('output-content');
+
+    let html = '';
+    const frameworkName = nameInput.value.trim() || 'My Personal Framework';
+
+    html += `<div class="output-section"><div class="output-label">Framework Name</div><div class="output-value" style="font-family:'Playfair Display',serif; font-style:italic; font-size:1.15rem;">${frameworkName}</div></div>`;
+
+    textareas.forEach((ta, i) => {
+      const val = ta.value.trim();
+      if (val) {
+        html += `<div class="output-section"><div class="output-label">${labels[i]}</div><div class="output-value">${val}</div></div>`;
+      }
+    });
+
+    if (textareas[0].value.trim() === '' && textareas[1].value.trim() === '') {
+      html += `<div class="output-section"><div class="output-value" style="font-style:italic; color:var(--light-muted)">Fill in the questions above to see your framework summary here.</div></div>`;
+    }
+
+    contentEl.innerHTML = html;
+    outputEl.style.display = 'block';
+    outputEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // PDF Export Function
+  function exportPDF() {
+    // Generate the framework output first
+    generateFramework();
+    
+    // Give the browser a tiny fraction of a second to render before pulling up the print dialog
+    setTimeout(() => {
+      window.print();
+    }, 300);
+  }
+
+  // Clear functionality with wipe
+  function clearBuilder() {
+    if(confirm("Are you sure you want to clear your framework? This will delete your saved answers permanently.")) {
+      document.querySelectorAll('.framework-builder textarea').forEach(t => t.value = '');
+      document.querySelector('.framework-builder input').value = '';
+      document.getElementById('framework-output').style.display = 'none';
+      
+      // Wipe the saved text from Local Storage
+      localStorage.removeItem('frameworkText');
+    }
+  }
+
+  // Staggered animation on load
+  document.querySelectorAll('section').forEach((el, i) => {
+    el.style.animationDelay = `${i * 0.05}s`;
+  });
+</script>
+</body>
+</html>
